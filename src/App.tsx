@@ -1,6 +1,11 @@
+import SearchBar from "./components/SearchBar"
+
 function App() {
   return (
-    <h1 className="text-8xl text-green-600 font-bold">Hello World</h1>
+    <div className="w-[900px] pt-6 mx-auto h-full flex justify-center">
+      <SearchBar />
+
+    </div>
   )
 }
 
