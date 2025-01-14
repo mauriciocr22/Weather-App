@@ -1,13 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { FaSearch } from "react-icons/fa";
-
-interface City {
-  name: string;
-  country: string;
-  state?: string;
-  lat: number;
-  lon: number;
-}
+import { fetchCities, City } from "../services/weatherService";
 
 export default function SearchBar({ onCitySelect }: { onCitySelect: (city: City) => void }) {
   const [query, setQuery] = useState("");
@@ -16,20 +9,16 @@ export default function SearchBar({ onCitySelect }: { onCitySelect: (city: City)
   const suggestionsRef = useRef<HTMLUListElement | null>(null);
 
   useEffect(() => {
-
-
     const fetchSuggestions = async () => {
       if (!query) {
         setSuggestions([]);
-        return
+        return;
       }
 
       setLoading(true);
       try {
-        const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
-        const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(query)}&limit=5&appid=${apiKey}`);
-        const data = await response.json();
-        setSuggestions(data);
+        const cities = await fetchCities(query);
+        setSuggestions(cities);
       } catch (error) {
         console.error("Erro ao buscar cidade", error);
       } finally {
@@ -76,7 +65,8 @@ export default function SearchBar({ onCitySelect }: { onCitySelect: (city: City)
                 onClick={() => {
                   setSuggestions([]);
                   onCitySelect(city);
-                  setQuery(city.name);
+                  setQuery("");
+                  console.log(city)
                 }}
               >
                 {displayText}
