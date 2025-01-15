@@ -9,7 +9,7 @@ export interface City {
   lon: number;
 }
 
-export interface weatherData {
+export interface WeatherData {
   name: string;
   main: {
     temp: number;
@@ -31,3 +31,14 @@ export const fetchCities = async (query: string): Promise<City[]> => {
   return response.json();
 }
 
+export const fetchWeather = async (lat: number, lon: number): Promise<WeatherData> => {
+  const response = await fetch(
+    `${BASE_URL}/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+  );
+
+  if (!response.ok) {
+    throw new Error("Erro ao buscar clima");
+  }
+
+  return response.json();
+};
