@@ -44,35 +44,42 @@ export default function SearchBar({ onCitySelect }: { onCitySelect: (city: City)
   }, []);
 
   return (
-    <div className="bg-[#fefefe] w-[450px] rounded-3xl border border-[#e5e5e5] shadow-md hover:shadow-sm transition-shadow duration-200">
-      <div className={`flex items-center justify-center w-full py-2 `}>
+    <div className={`relative bg-[#fefefe] w-[450px] ${suggestions.length > 0 || loading ? "rounded-t-3xl" : "rounded-3xl"} border border-[#e5e5e5] shadow-md hover:shadow-sm transition-shadow duration-200`}>
+      {/* Input */}
+      <div className="flex items-center justify-center w-full py-2">
         <FaSearch className="fill-gray-500" size={20} />
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-[88%] focus:outline-none pl-4 text-lg" placeholder="Digite sua cidade" />
+          className="w-[88%] focus:outline-none pl-4 text-lg"
+          placeholder="Digite sua cidade"
+        />
       </div>
-      {loading && <p className="text-gray-600 text-center py-2">Carregando...</p>}
+
+      {/* Autocomplete */}
+      {loading && <p className="absolute top-full left-0 w-full bg-[#fefefe] border-t-0 border border-[#e5e5e5] rounded-b-3xl shadow-md z-10 text-gray-600 text-center py-2">Carregando...</p>}
       {suggestions.length > 0 && (
-        <ul ref={suggestionsRef} className="">
+        <ul
+          ref={suggestionsRef}
+          className="absolute top-full left-0 w-full bg-[#fefefe] border-t-0 border border-[#e5e5e5] rounded-b-3xl shadow-md z-10"
+        >
           {suggestions.map((city: City) => {
             const displayText = `${city.name}${city.state ? `, ${city.state}` : ""} - ${city.country}`;
             return (
               <li
                 key={`${city.name}-${city.lat}-${city.lon}`}
-                className="p-2 z-10 px-6 cursor-pointer hover:bg-gray-200 text-lg last:rounded-b-3xl"
+                className="p-2 px-6 cursor-pointer hover:bg-gray-200 text-lg"
                 onClick={() => {
                   setSuggestions([]);
                   onCitySelect(city);
                   setQuery("");
-                  console.log(city)
+                  console.log(city);
                 }}
               >
                 {displayText}
               </li>
-
-            )
+            );
           })}
         </ul>
       )}
