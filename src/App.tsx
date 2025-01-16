@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SearchBar from "./components/SearchBar"
 import { City, fetchWeather, WeatherData } from "./services/weatherService";
+import WeatherCard from "./components/WeatherCard";
 
 function App() {
   const [weather, setWeather] = useState<WeatherData | null>(null);
@@ -17,12 +18,7 @@ function App() {
   return (
     <div className="w-[900px] pt-6 mx-auto flex flex-col justify-center items-center">
       <SearchBar onCitySelect={handleCitySelect} />
-      {weather && (
-        <div className="">
-          <h2>{weather.name}</h2>
-          <span className="">Temperatura: {weather.main.temp}ºC</span>
-        </div>
-      )}
+      {weather && <WeatherCard weather={weather} />}
     </div>
   )
 }
