@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { WeatherData } from "../services/weatherService"
 
 interface WeatherCardProps {
@@ -8,10 +9,10 @@ export default function WeatherCard({ weather }: WeatherCardProps) {
   return (
     <div className="flex flex-col items-center p-4 border rounded shadow-md mt-4">
       <h2 className="text-2xl font-bold">{weather.name}</h2>
-      <p>Temperatura: {weather.main.temp}°C</p>
+      <p>Temperatura: {Number(weather.main.temp).toFixed(0)}°C</p>
       <p>Descrição: {weather.weather[0].description}</p>
       <p>Umidade: {weather.main.humidity}%</p>
-      <p>Vento: {weather.wind.speed} km/h</p>
+      <p>Vento: {Number(weather.wind.speed).toFixed(0)} km/h</p>
     </div>
   )
 }

@@ -1,10 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar"
 import { City, fetchWeather, WeatherData } from "./services/weatherService";
 import WeatherCard from "./components/WeatherCard";
 
+
 function App() {
   const [weather, setWeather] = useState<WeatherData | null>(null);
+
+  useEffect(() => {
+    if (!navigator.geolocation) {
+      console.log("Geolocation não suportado");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const weatherData = await fetchWeather(position.coords.latitude, position.coords.longitude);
+
+      setWeather(weatherData);
+    })
+  }, [])
 
   const handleCitySelect = async (city: City) => {
     try {

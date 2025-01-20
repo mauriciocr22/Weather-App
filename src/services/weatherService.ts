@@ -33,7 +33,7 @@ export const fetchCities = async (query: string): Promise<City[]> => {
 
 export const fetchWeather = async (lat: number, lon: number): Promise<WeatherData> => {
   const response = await fetch(
-    `${BASE_URL}/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+    `${BASE_URL}/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=pt_br`
   );
 
   if (!response.ok) {
