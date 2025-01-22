@@ -15,6 +15,7 @@ export interface WeatherData {
     temp: number;
     humidity: number;
   };
+  dt: number;
   weather: { description: string }[];
   wind: {
     speed: number;
@@ -39,6 +40,6 @@ export const fetchWeather = async (lat: number, lon: number): Promise<WeatherDat
   if (!response.ok) {
     throw new Error("Erro ao buscar clima");
   }
-
+  console.log(response);
   return response.json();
 };

@@ -30,7 +30,7 @@ function App() {
   }
 
   return (
-    <div className="w-[900px] pt-6 mx-auto flex flex-col justify-center items-center">
+    <div className="min-w-[320px] pt-6 mx-auto flex flex-col justify-center items-center gap-6">
       <SearchBar onCitySelect={handleCitySelect} />
       {weather && <WeatherCard weather={weather} />}
     </div>
