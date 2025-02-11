@@ -8,7 +8,7 @@ export default function WeatherCard({ weather }: WeatherCardProps) {
   const iconUrl = `https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`
 
   return (
-    <div className="flex flex-col px-8 py-10 border-0 shadow-lg w-[450px] rounded-3xl bg-gradient-to-br from-white to-blue-50">
+    <div className="flex flex-col px-8 py-10 border-0 shadow-lg w-[375px] md:w-[450px] rounded-3xl bg-gradient-to-br from-white to-blue-50">
       <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">{weather.name}</h2>
 
       <div className="flex justify-center items-baseline gap-4 mb-8">
@@ -18,18 +18,18 @@ export default function WeatherCard({ weather }: WeatherCardProps) {
 
       <div className="space-y-3 text-gray-600">
         <div className="flex items-center justify-between border-b border-gray-100 pb-2">
-          <span className="font-medium">Descrição</span>
-          <span className="capitalize">{weather.weather[0].description}</span>
+          <span className="font-medium text-lg md:text-base">Descrição</span>
+          <span className="capitalize text-lg md:text-base">{weather.weather[0].description}</span>
         </div>
 
         <div className="flex items-center justify-between border-b border-gray-100 pb-2">
-          <span className="font-medium">Umidade</span>
-          <span>{weather.main.humidity}%</span>
+          <span className="font-medium text-lg md:text-base">Umidade</span>
+          <span className="text-lg md:text-base">{weather.main.humidity}%</span>
         </div>
 
         <div className="flex items-center justify-between">
-          <span className="font-medium">Vento</span>
-          <span>{Number(weather.wind.speed).toFixed(0)} km/h</span>
+          <span className="font-medium text-lg md:text-base">Vento</span>
+          <span className="text-lg md:text-base">{Number(weather.wind.speed).toFixed(0)} km/h</span>
         </div>
       </div>
     </div>
