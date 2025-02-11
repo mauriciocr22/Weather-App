@@ -44,7 +44,7 @@ export default function SearchBar({ onCitySelect }: { onCitySelect: (city: City)
   }, []);
 
   return (
-    <div className={`relative bg-[#fefefe] w-[375px] md:w-[450px] ${suggestions.length > 0 || loading ? "rounded-t-3xl" : "rounded-3xl"} border border-[#e5e5e5] shadow-md hover:shadow-sm transition-shadow duration-200`}>
+    <div className={`relative bg-[#fefefe] w-[330px] md:w-[450px] ${suggestions.length > 0 || loading ? "rounded-t-3xl" : "rounded-3xl"} border border-[#e5e5e5] shadow-md hover:shadow-sm transition-shadow duration-200`}>
       {/* Input */}
       <div className="flex items-center justify-center w-full py-2">
         <FaSearch className="fill-gray-500" size={20} />
@@ -52,7 +52,7 @@ export default function SearchBar({ onCitySelect }: { onCitySelect: (city: City)
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-[88%] focus:outline-none pl-4 text-lg"
+          className="w-[84%] md:w-[88%] focus:outline-none pl-4 text-lg"
           placeholder="Digite sua cidade"
         />
       </div>

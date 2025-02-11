@@ -8,7 +8,7 @@ export default function WeatherCard({ weather }: WeatherCardProps) {
   const iconUrl = `https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`
 
   return (
-    <div className="flex flex-col px-8 py-10 border-0 shadow-lg w-[375px] md:w-[450px] rounded-3xl bg-gradient-to-br from-white to-blue-50">
+    <div className="flex flex-col px-8 py-10 border-0 shadow-lg w-[330px] md:w-[450px] rounded-3xl bg-gradient-to-br from-white to-blue-50">
       <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">{weather.name}</h2>
 
       <div className="flex justify-center items-baseline gap-4 mb-8">
